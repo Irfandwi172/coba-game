@@ -106,6 +106,9 @@ const MAX_STARS = 3;
 // Ganti URL ini sesuai link Genially kamu (halaman yang mau dituju setelah menang)
 const GENIALLY_URL = "https://view.genially.com/6a73f94f54076ea3a8962983";
 
+// Untuk percobaan: link Genially yang dituju setelah level 1 selesai (arahkan ke peta level 2 di Genially)
+const GENIALLY_MAP_URL = "https://view.genially.com/6a73f94f54076ea3a8962983";
+
 export default function PetualanganBintangGame() {
   const [screen, setScreen] = useState("home");
   const [activeLevel, setActiveLevel] = useState(0);
@@ -193,6 +196,7 @@ export default function PetualanganBintangGame() {
           starCount={starCount}
           passed={starCount >= MAX_STARS}
           isLast={activeLevel === LEVEL_DATA.length - 1}
+          activeLevel={activeLevel}
           onRetry={startQuiz}
           onNextLevel={() => openLevel(activeLevel + 1)}
           onBackToMap={backToMap}
@@ -431,7 +435,7 @@ function QuizScreen({ level, qIndex, starCount, selected, answered, onSelect, on
 
 /* ---------------- RESULT ---------------- */
 
-function ResultScreen({ starCount, passed, isLast, onRetry, onNextLevel, onBackToMap }) {
+function ResultScreen({ starCount, passed, isLast, activeLevel, onRetry, onNextLevel, onBackToMap }) {
   return (
     <div style={S.scene}>
       <GlobalStyle />
