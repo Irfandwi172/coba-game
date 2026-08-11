@@ -462,7 +462,7 @@ function ResultScreen({ starCount, passed, isLast, activeLevel, onRetry, onNextL
               Ulangi
             </button>
             {passed && !isLast && (
-              <button className="gh-btn gh-body" style={S.btnPrimary} onClick={onNextLevel}>
+              <button className="gh-btn gh-body" style={S.btnPrimary} onClick={() => { window.location.href = GENIALLY_URL; }}>
                 Level Berikutnya
               </button>
             )}
