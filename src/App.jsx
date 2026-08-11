@@ -103,6 +103,9 @@ const LEVEL_DATA = [
 
 const MAX_STARS = 3;
 
+// Ganti URL ini sesuai link Genially kamu (halaman yang mau dituju setelah menang)
+const GENIALLY_URL = "https://view.genially.com/6a73f94f54076ea3a8962983";
+
 export default function PetualanganBintangGame() {
   const [screen, setScreen] = useState("home");
   const [activeLevel, setActiveLevel] = useState(0);
@@ -459,9 +462,19 @@ function ResultScreen({ starCount, passed, isLast, onRetry, onNextLevel, onBackT
                 Level Berikutnya
               </button>
             )}
-            <button className="gh-btn gh-body" style={S.btnPrimary} onClick={onBackToMap}>
-              Kembali ke Peta
-            </button>
+            {passed && isLast ? (
+              <button
+                className="gh-btn gh-body"
+                style={S.btnPrimary}
+                onClick={() => { window.location.href = GENIALLY_URL; }}
+              >
+                Selesai
+              </button>
+            ) : (
+              <button className="gh-btn gh-body" style={S.btnPrimary} onClick={onBackToMap}>
+                Kembali ke Peta
+              </button>
+            )}
           </div>
         </div>
       </div>
