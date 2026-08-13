@@ -20,7 +20,7 @@ import {
   hasSubmittedLeaderboard,
   markLeaderboardSubmitted,
 } from "./utils/storage";
-import { submitScore } from "./utils/leaderboardApi";
+import { submitScore } from "./utils/LeaderboardApi";
 
 export default function App() {
   const [screen, setScreen] = useState("home");
