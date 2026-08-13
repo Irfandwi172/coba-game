@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
-import { fetchLeaderboard } from "../utils/leaderboardApi";
-import "./LeaderboardPage.css";
+import { fetchLeaderboard } from "../utils/Leaderboardapi";
+import "./LeaderBoardpage.css";
 
 function formatTime(totalSeconds) {
   const m = Math.floor(totalSeconds / 60);
