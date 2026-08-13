@@ -8,7 +8,7 @@ import MapPage from "./pages/MapPage";
 import MateriPage from "./pages/MateriPage";
 import QuizPage from "./pages/QuizPage";
 import ResultPage from "./pages/ResultPage";
-import LeaderboardPage from "./pages/LeaderboardPage";
+import LeaderboardPage from "./pages/LeaderBoardpage";
 
 import { LEVEL_DATA, MAX_STARS, PASS_THRESHOLD } from "./data/levelData";
 import {
@@ -20,7 +20,7 @@ import {
   hasSubmittedLeaderboard,
   markLeaderboardSubmitted,
 } from "./utils/storage";
-import { submitScore } from "./utils/LeaderboardApi";
+import { submitScore } from "./utils/Leaderboardapi";
 
 export default function App() {
   const [screen, setScreen] = useState("home");
