@@ -1,0 +1,211 @@
+.quiz-scene {
+  background: linear-gradient(180deg, var(--color-sky-top) 0%, var(--color-sky-mid) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+  .quiz-board membawa background image kuis (banner judul + kotak putih
+  kiri + kolom slot jawaban kanan yang sudah tergambar di dalam gambarnya).
+  aspect-ratio di sini PERKIRAAN dari proporsi screenshot (947 x 593).
+  Sesuaikan angka ini kalau ukuran asli file quiz-bg.png kamu beda.
+
+  Tombol kembali, progress bintang, dan tombol Jawab/Lanjut sekarang
+  semua jadi anak dari .quiz-board, diposisikan pakai % (bukan px),
+  supaya ikut membesar/mengecil proporsional sama gambarnya.
+*/
+.quiz-board {
+  position: relative;
+  width: 100%;
+  max-width: 1700px;
+  aspect-ratio: 947 / 593;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.quiz-board-back {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
+.quiz-board-back .back-btn {
+  position: static; /* override .back-btn bawaan yang defaultnya absolute */
+}
+
+.quiz-progress-pill {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(243, 233, 210, 0.9);
+  color: var(--color-ink);
+  font-weight: 700;
+  font-size: clamp(9px, 1.4vw, 15px);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.quiz-progress-stars {
+  font-size: clamp(8px, 1.2vw, 13px);
+}
+
+/*
+  Kotak konten kiri (tempat pertanyaan) - posisi & ukuran perkiraan
+  dari area kotak putih besar di sisi kiri background.
+*/
+.quiz-content-box {
+  position: absolute;
+  left: 10.5%;
+  top: 24.5%;
+  width: 51.5%;
+  height: 57%;
+  padding: 4%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  justify-content: center;
+}
+
+.quiz-question {
+  color: var(--color-ink);
+  font-size: clamp(13px, 2.2vw, 18px);
+  line-height: 1.35;
+  margin: 0 0 8px;
+}
+
+.quiz-question-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 6px auto;
+  border-radius: 8px;
+}
+
+.quiz-hint {
+  font-size: clamp(10px, 1.4vw, 12.5px);
+  color: var(--color-ink-soft);
+}
+
+/* Fix: margin horizontal dulu 280px (px tetap), diganti 0 supaya
+   nggak ngedorong teks keluar kotak di layar sempit. */
+.quiz-feedback {
+  font-weight: 800;
+  font-size: clamp(13px, 2vw, 16px);
+  margin: 6px 0;
+  text-align: center;
+}
+
+.feedback-correct {
+  color: var(--color-correct-border);
+}
+
+.feedback-wrong {
+  color: var(--color-wrong-border);
+}
+
+/*
+  Kolom 5 opsi jawaban di kanan - posisi & ukuran perkiraan dari area
+  5 slot pil di sisi kanan background. Pakai flexbox supaya 5 opsi
+  otomatis terbagi rata mengisi tinggi kolom itu.
+*/
+.quiz-options-col {
+  position: absolute;
+  left: 63.8%;
+  top: 30%;
+  width: 23%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 6%;
+  width: 100%;
+  height: 18%;
+  padding: 0 8%;
+  border-radius: 999px;
+  border: 2px solid var(--color-parchment-border);
+  background: rgba(255, 255, 255, 0.92);
+  text-align: left;
+  color: var(--color-ink);
+  font-size: clamp(9px, 1.3vw, 12px);
+  line-height: 1.2;
+}
+
+.quiz-option-letter {
+  flex-shrink: 0;
+  width: 22%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--color-blue-2);
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(9px, 1.4vw, 13px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz-option-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.option-selected {
+  border-color: var(--color-gold) !important;
+  box-shadow: 0 0 0 2px rgba(224, 168, 64, 0.4);
+}
+
+.option-correct {
+  background: var(--color-correct-bg) !important;
+  border-color: var(--color-correct-border) !important;
+}
+
+.option-correct .quiz-option-letter {
+  background: var(--color-correct-border);
+}
+
+.option-wrong {
+  background: var(--color-wrong-bg) !important;
+  border-color: var(--color-wrong-border) !important;
+}
+
+.option-wrong .quiz-option-letter {
+  background: var(--color-wrong-border);
+}
+
+/*
+  Tombol Jawab/Lanjut - posisi & ukuran perkiraan, di tengah bawah
+  kotak putih kiri (di bawah .quiz-content-box).
+*/
+.quiz-action-row {
+  position: absolute;
+  left: 10.5%;
+  width: 51.5%;
+  top: 82.5%;
+  display: flex;
+  justify-content: center;
+}
+
+.quiz-action-row .btn-primary {
+  font-size: clamp(11px, 1.6vw, 15px);
+  padding: clamp(6px, 1.2vw, 12px) clamp(16px, 3vw, 30px);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.quiz-action-row .btn-primary:hover {
+  background: var(--color-gold);
+}

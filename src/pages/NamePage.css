@@ -1,0 +1,50 @@
+.name-scene{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 0 auto;
+  padding: 0 6%;
+}
+
+.name-emoji {
+  font-size: 44px;
+  margin-top: 6px;
+}
+
+.name-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.name-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 2px solid var(--color-parchment-border);
+  background: #fff;
+  font-size: 15px;
+  color: var(--color-ink);
+  text-align: center;
+}
+
+.name-input:focus {
+  outline: none;
+  border-color: var(--color-blue-2);
+}
+
+.name-error {
+  color: var(--color-wrong-border);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.name-submit-btn {
+  margin-top: 8px;
+  justify-content: center;
+  width: 100%;
+}

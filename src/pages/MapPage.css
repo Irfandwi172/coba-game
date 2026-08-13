@@ -1,0 +1,134 @@
+.map-scene {
+  background: linear-gradient(180deg, var(--color-sky-top) 0%, var(--color-sky-mid) 100%);
+}
+ 
+.map-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  padding: 18px 18px 0;
+  max-width: 1680px;
+  margin: 10px auto;
+}
+ 
+.map-header-text {
+  color: #0d3b3e;
+  background: rgba(243, 233, 210, 0.85);
+  padding: 6px 14px;
+  border-radius: 12px;
+}
+ 
+.map-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+ 
+.map-subtitle {
+  font-size: 12px;
+  opacity: 0.85;
+}
+ 
+/*
+  .map-area membawa background image-nya sendiri (bukan lagi elemen
+  terpisah "mapbg"). Karena aspect-ratio di sini (936/630) SAMA PERSIS
+  dengan rasio asli bg_map.png, gambar akan selalu pas mengisi kotak ini
+  tanpa sisa ruang kosong di sisi manapun, di ukuran layar berapapun.
+  Ini juga artinya posisi tombol (dalam %) akan SELALU pas menempel ke
+  gambar, karena keduanya berbagi kotak ukuran yang sama.
+*/
+.map-area {
+  position: relative;
+  width: 100%;
+  max-width: 1700px;
+  aspect-ratio: 936 / 630;
+  margin: 24px auto 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+ 
+/* Tombol level: sekarang menampilkan gambar badge (lingkaran angka +
+   tulisan "VILLAGE") milikmu sendiri, bukan lagi lingkaran transparan */
+.map-node {
+  position: absolute;
+  transform: translate(-25%, -25%);
+  width: 15%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.node-badge {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.35));
+  transition: transform 0.15s ease;
+}
+ 
+.map-node-unlocked:hover .node-badge {
+  transform: scale(1.07);
+}
+
+/*
+  POSISI TOMBOL TIAP LEVEL
+  --------------------------
+  Dalam % relatif terhadap .map-area (yang aspect-ratio-nya sama
+  persis dengan gambar), jadi selalu presisi di ukuran layar berapapun.
+    - map-node-1 = Village 1 (rumah, kiri atas)
+    - map-node-2 = Village 2 (bank, kanan atas)
+    - map-node-3 = Village 3 (gedung, bawah tengah)
+*/
+.map-node-1 {
+  right: 66.45%;
+  top: 25.5%;
+}
+.map-node-2 {
+  left: 69.44%;
+  top: 17.5%;
+}
+.map-node-3 {
+  left: 48.58%;
+  top: 69.5%;
+}
+
+.map-node-locked {
+  cursor: not-allowed;
+}
+ 
+.map-node-locked .node-badge {
+  filter: grayscale(1) brightness(0.75);
+}
+ 
+.node-lock {
+  position: absolute;
+  font-size: clamp(16px, 3vw, 26px);
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+}
+ 
+.node-stars {
+  position: absolute;
+  bottom: -22px;
+  display: flex;
+  gap: 1px;
+  font-size: clamp(11px, 1.6vw, 15px);
+  background: rgba(243, 233, 210, 0.85);
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+ 
+@media (min-width: 768px) {
+  .map-title {
+    font-size: 18px;
+  }
+  .map-subtitle {
+    font-size: 14px;
+  }
+}

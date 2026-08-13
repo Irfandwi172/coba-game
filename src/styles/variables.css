@@ -1,0 +1,36 @@
+:root {
+  --color-sky-top: #6FB8EE;
+  --color-sky-mid: #A9DBF6;
+  --color-sky-bottom: #CFEFEC;
+  --color-ground-top: #8FD65C;
+  --color-ground-bottom: #6FBF4F;
+  --color-path-a: #E7CE9C;
+  --color-path-b: #DEC28A;
+
+  --color-parchment: #F3E9D2;
+  --color-parchment-border: #D4BC85;
+
+  --color-ink: #2B2119;
+  --color-ink-soft: #6B5C3E;
+  --color-ink-body: #3D3421;
+
+  --color-gold: #E0A840;
+  --color-forest: #3F7A5A;
+  --color-locked: #9A9A92;
+
+  --color-blue-1: #4FA3F0;
+  --color-blue-2: #2E7FDE;
+  --color-blue-shadow: #1E5FA8;
+
+  --color-purple-1: #A77CE8;
+  --color-purple-2: #8A5AD8;
+  --color-purple-shadow: #6A3FB0;
+
+  --color-correct-bg: #DCEFD4;
+  --color-correct-border: #3F7A5A;
+  --color-wrong-bg: #F6D9D2;
+  --color-wrong-border: #C0523A;
+
+  --font-title: "Baloo 2", system-ui, sans-serif;
+  --font-body: "Quicksand", system-ui, sans-serif;
+}

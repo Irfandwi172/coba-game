@@ -1,0 +1,36 @@
+.guide-scene {
+  position: relative;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--color-sky-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4%;
+  width: 100%;
+}
+
+.guide-content {
+  width: 100%;
+  max-width: 460px;
+  text-align: left;
+}
+
+.guide-list {
+  text-align: left;
+  color: var(--color-ink-body);
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 14px 0 4px;
+  padding-left: 20px;
+}
+
+@media (min-width: 768px) {
+  .guide-content {
+    max-width: 520px;
+  }
+  .guide-list {
+    font-size: 15.5px;
+  }
+}
