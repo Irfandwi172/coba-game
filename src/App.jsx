@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 import HomePage from "./pages/HomePage";
 import NamePage from "./pages/NamePage";
-import GuidePage from "./pages/GuidePage";
 import MapPage from "./pages/MapPage";
 import MateriPage from "./pages/MateriPage";
 import QuizPage from "./pages/QuizPage";
@@ -145,8 +144,6 @@ export default function App() {
 
       {screen === "name" && <NamePage onSubmit={handleNameSubmit} />}
 
-      {screen === "guide" && <GuidePage onBack={() => setScreen("home")} />}
-
       {screen === "map" && (
         <MapPage
           playerName={playerName}
@@ -154,6 +151,7 @@ export default function App() {
           isUnlocked={isUnlocked}
           onOpenLevel={openLevel}
           onHome={() => setScreen("home")}
+          onLeaderboard={() => setScreen("leaderboard")}
         />
       )}
 

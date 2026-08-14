@@ -15,13 +15,16 @@ const BADGES = {
   3: villageBadge3,
 };
 
-export default function MapPage({ playerName, progress, isUnlocked, onOpenLevel, onHome }) {
+export default function MapPage({ playerName, progress, isUnlocked, onOpenLevel, onHome, onLeaderboard }) {
   const totalStars = progress.reduce((a, b) => a + b, 0);
 
   return (
     <div className="scene map-scene">
       <div className="map-header">
         <BackButton onClick={onHome} />
+        <button className="gh-btn gh-body btn-secondary" onClick={onLeaderboard}>
+            <span>🏆 LEADERBOARD</span>
+          </button>
         <div className="gh-body map-header-text">
           <div className="map-title">
             Peta Petualangan{playerName ? ` — ${playerName}` : ""}
