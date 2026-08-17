@@ -2,6 +2,10 @@ import React from "react";
 import { GENIALLY_URL, GENIALLY_MAP_URL, MAX_STARS, PASS_THRESHOLD } from "../data/levelData";
 import "./ResultPage.css";
 import bgResult from "../assets/bgmateri.png";
+import ulangi from "../assets/retrybutton.png";
+import next from "../assets/nextbutton.png";
+import peta from "../assets/peta.png";
+import leaderboard from "../assets/leaderboard.png";
 
 export default function ResultPage({
   starCount,
@@ -11,7 +15,10 @@ export default function ResultPage({
   onRetry,
   onNextLevel,
   onBackToMap,
+  onLeaderboard,
 }) {
+  const gameFullyCompleted = passed && isLast;
+
   return (
     <div
       className="scene"
@@ -42,17 +49,21 @@ export default function ResultPage({
         </p>
 
         <div className="action-row">
-          <button className="gh-btn gh-body btn-secondary" onClick={onRetry}>
-            Ulangi
-          </button>
+          {/* Tombol Ulangi disembunyikan kalau game sudah tuntas
+              (level terakhir + lulus) - nggak ada gunanya lagi diulang */}
+          {!gameFullyCompleted && (
+            <button className="action-btn" onClick={onRetry}>
+              <img src={ulangi} alt="" />
+            </button>
+          )}
 
           {/* Percobaan: level 1 selesai -> redirect keluar ke peta Genially */}
           {passed && activeLevel === 0 && (
             <button
-              className="gh-btn gh-body btn-primary"
+              className="action-btn"
               onClick={onNextLevel}
             >
-              Selanjutnya
+              <img src={next} alt="" />
             </button>
           )}
 
@@ -62,19 +73,15 @@ export default function ResultPage({
             </button>
           )}
 
-          {passed && isLast ? (
-            <button
-              className="gh-btn gh-body btn-primary"
-              onClick={() => {
-                window.location.href = GENIALLY_URL;
-              }}
-            >
-              Selesai
-            </button>
+          {gameFullyCompleted ? (
+            <button className="leaderboard-btn" onClick={onLeaderboard}>
+            <img src={leaderboard} alt="" />
+            <h3>Lihat Leaderboard</h3>
+          </button>
           ) : (
             !(passed && activeLevel === 0) && (
-              <button className="gh-btn gh-body btn-primary" onClick={onBackToMap}>
-                Kembali ke Peta
+              <button className="action-btn" onClick={onBackToMap}>
+                <img src={peta} alt="" />
               </button>
             )
           )}

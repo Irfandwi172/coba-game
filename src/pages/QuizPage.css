@@ -21,7 +21,7 @@
   width: 100%;
   max-width: 1700px;
   aspect-ratio: 947 / 593;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }

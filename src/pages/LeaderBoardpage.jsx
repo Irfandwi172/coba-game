@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
 import { fetchLeaderboard } from "../utils/Leaderboardapi";
+import { GENIALLY_URL } from "../data/levelData";
 import "./LeaderBoardpage.css";
 
 function formatTime(totalSeconds) {
@@ -26,6 +27,10 @@ export default function LeaderboardPage({ onBack }) {
       alive = false;
     };
   }, []);
+
+  function goToGenially() {
+    window.location.href = GENIALLY_URL;
+  }
 
   return (
     <div className="scene">
@@ -58,6 +63,10 @@ export default function LeaderboardPage({ onBack }) {
               ))}
             </ol>
           )}
+
+          <button className="btn-genially" onClick={goToGenially}>
+            Ke Genially
+          </button>
         </div>
       </div>
     </div>

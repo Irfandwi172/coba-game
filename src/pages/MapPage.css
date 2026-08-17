@@ -45,7 +45,7 @@
   max-width: 1700px;
   aspect-ratio: 936 / 630;
   margin: 24px auto 0;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-import HomePage from "./pages/HomePage";
 import NamePage from "./pages/NamePage";
 import MapPage from "./pages/MapPage";
 import MateriPage from "./pages/MateriPage";
@@ -20,9 +19,53 @@ import {
   markLeaderboardSubmitted,
 } from "./utils/storage";
 import { submitScore } from "./utils/Leaderboardapi";
+import sfxCorrect from "./assets/BENAR.mp3";
+import sfxWrong from "./assets/SALAH.mp3";
+
+// Diputar ulang dari awal tiap kali dipanggil, jadi aman kalau
+// pemain jawab soal berturut-turut dengan cepat.
+function playSfx(src) {
+  try {
+    const audio = new Audio(src);
+    audio.play().catch(() => {
+      /* browser kadang blokir autoplay sebelum ada interaksi user - abaikan */
+    });
+  } catch {
+    /* abaikan kalau Audio API tidak tersedia */
+  }
+}
+
+// Data URI audio hening super pendek (nggak perlu file terpisah).
+const SILENT_AUDIO =
+  "data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA" +
+  "gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA" +
+  "gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgID/" +
+  "/uQxAAAAAAAAAAAAAAAAAAAAAAAVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" +
+  "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" +
+  "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==";
+
+let audioUnlocked = false;
+
+// Sekali dipanggil (dari dalam event klik asli, misalnya submit form
+// nama), ini "membuka kunci" izin autoplay audio untuk SISA sesi
+// halaman ini. Setelah ini, audio.play() di halaman Materi (lewat
+// useEffect, bukan klik langsung) jadi jauh lebih andal berhasil,
+// terutama di Safari yang paling ketat soal autoplay.
+function unlockAudioForSession() {
+  if (audioUnlocked) return;
+  audioUnlocked = true;
+  try {
+    const audio = new Audio(SILENT_AUDIO);
+    audio.play().catch(() => {});
+  } catch {
+    /* abaikan */
+  }
+}
 
 export default function App() {
-  const [screen, setScreen] = useState("home");
+  // Nggak ada lagi halaman Home: begitu app dibuka, langsung diputuskan
+  // mau ke "name" (belum pernah isi nama) atau "map" (sudah pernah).
+  const [screen, setScreen] = useState(() => (getSavedName() ? "map" : "name"));
   const [playerName, setPlayerName] = useState(() => getSavedName());
   const [progress, setProgress] = useState(() => getSavedProgress(LEVEL_DATA.length));
 
@@ -37,19 +80,16 @@ export default function App() {
     saveProgress(progress);
   }, [progress]);
 
+  // pastikan timer mulai jalan begitu pemain masuk ke map (baik lewat
+  // nama yang sudah tersimpan, maupun baru saja isi nama)
+  useEffect(() => {
+    if (playerName) getOrSetStartTime();
+  }, [playerName]);
+
   const isUnlocked = (i) => i === 0 || progress[i - 1] >= PASS_THRESHOLD;
 
-  function handleStartClick() {
-    // kalau belum pernah isi nama, minta isi dulu; kalau sudah ada, langsung ke peta
-    if (playerName) {
-      getOrSetStartTime(); // jaga-jaga kalau belum pernah ke-set
-      setScreen("map");
-    } else {
-      setScreen("name");
-    }
-  }
-
   function handleNameSubmit(name) {
+    unlockAudioForSession();
     setPlayerName(name);
     saveName(name);
     getOrSetStartTime(); // mulai hitung waktu dari sini
@@ -58,6 +98,7 @@ export default function App() {
 
   function openLevel(i) {
     if (!isUnlocked(i)) return;
+    unlockAudioForSession();
     setActiveLevel(i);
     setScreen("materi");
   }
@@ -93,7 +134,12 @@ export default function App() {
       chosenSorted.length === correctSorted.length &&
       chosenSorted.every((v, i) => v === correctSorted[i]);
     setAnswered(true);
-    if (isCorrect) setStarCount((s) => Math.min(MAX_STARS, s + 1));
+    if (isCorrect) {
+      setStarCount((s) => Math.min(MAX_STARS, s + 1));
+      playSfx(sfxCorrect);
+    } else {
+      playSfx(sfxWrong);
+    }
   }
 
   function nextQuestion() {
@@ -132,15 +178,7 @@ export default function App() {
 
   return (
     <div className="gh-app">
-      {screen === "home" && (
-        <HomePage
-          onStart={handleStartClick}
-          onGuide={() => setScreen("guide")}
-          onLeaderboard={() => setScreen("leaderboard")}
-        />
-      )}
-
-      {screen === "leaderboard" && <LeaderboardPage onBack={() => setScreen("home")} />}
+      {screen === "leaderboard" && <LeaderboardPage onBack={backToMap} />}
 
       {screen === "name" && <NamePage onSubmit={handleNameSubmit} />}
 
@@ -150,7 +188,6 @@ export default function App() {
           progress={progress}
           isUnlocked={isUnlocked}
           onOpenLevel={openLevel}
-          onHome={() => setScreen("home")}
           onLeaderboard={() => setScreen("leaderboard")}
         />
       )}
@@ -182,6 +219,7 @@ export default function App() {
           onRetry={startQuiz}
           onNextLevel={() => openLevel(activeLevel + 1)}
           onBackToMap={backToMap}
+          onLeaderboard={() => setScreen("leaderboard")}
         />
       )}
     </div>

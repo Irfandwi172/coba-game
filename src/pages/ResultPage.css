@@ -5,3 +5,36 @@
   margin-top: 8px;
   margin-bottom: 4px;
 }
+
+.action-row img{
+  width: 90px;
+  height: 90px;
+  transition: 0.6s ease;
+}
+
+.action-btn{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+
+.leaderboard-btn{
+  width: 220px;
+  height: 120px;
+  transition: 0.6s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+  gap: 1px;
+}
+
+.leaderboard-btn h3{
+  margin: 0;
+  color: green;
+}
+
+.leaderboard-btn:hover{
+  transform: scale(1.1);
+}
+

@@ -24,22 +24,32 @@ import soal2 from "../assets/gambarsoal4fix.png";
 import soal3 from "../assets/gambarsoal2.png";
 import soal4 from "../assets/gambarsoal2fix.png";
 import soal5 from "../assets/soalterakhir.png";
+import audio1 from "../assets/audio1.mp3";
+import audio2 from "../assets/audio2.mp3";
+import audio3 from "../assets/audio3.mp3";
+
 
 export const Background = [bg1, bg2, bg3, bgmateri1, bgmateri2, bgmateri3];
 
 export const MAX_STARS = 3; // 1 bintang per soal (3 soal per level)
 export const PASS_THRESHOLD = 2; // minimal bintang untuk buka level berikutnya
 
+export const audio = [
+  audio1,
+  audio2,
+  audio3,
+ 
+]
+
 export const LEVEL_DATA = [
   {
     id: 1,
     background: Background[3],
     backgroundMateri: Background[0],
-    title: "ANALYSIS VILLAGE",
     pickCount: 2, // village 1: pilih 2 dari 5 opsi
     materi: {
       text: "Selamat datang di Analysis Village! Banyak warga di kota Smartnuma membutuhkan bantuan untuk memahami informasi tentang investasi dan peminjaman. Tugasmu adalah Analisis informasi pada setiap kasus. Pilih 2 jawaban yang benar berdasarkan informasi yang tersedia. Perhatikan hubungan antara modal, bunga, periode, pembayaran, dan tujuan keuangan sebelum menentukan jawaban.",
-      imageEmoji: "🏠",
+      audio: audio1,
     },
     questions: [
       {
@@ -83,11 +93,11 @@ export const LEVEL_DATA = [
     id: 2,
     background: Background[1],
     backgroundMateri: Background[4],
-    title: "FINANCE CENTER",
     pickCount: 1, // village 2: pilih 1 dari 4 opsi
     materi: {
       text: "Sekarang perjalananmu berlanjut ke village 2. Di sini kamu akan membantu menyelesaikan berbagai permasalahan keuangan. Namun, berhati-hatilah dalam setiap perhitunganmu!",
-      imageEmoji: "🏦",
+      audio: audio2,
+
     },
     questions: [
       {
@@ -118,11 +128,11 @@ export const LEVEL_DATA = [
     id: 3,
     background: Background[2],
     backgroundMateri: Background[5],
-    title: "FINANCE CENTER",
     pickCount: 1, // village 3: pilih 1 dari 4 opsi
     materi: {
       text: "Luar biasa! Kamu telah berhasil melewati village 1 dan village 2. Sekarang kamu tiba di village 3, tempat para Financial Consultant membantu warga Smartnuma mengambil keputusan keuangan. Kali ini tantangannya lebih besar. Kamu akan menghadapi kasus nyata tentang pinjaman dan investasi. Gunakan informasi yang tersedia dan hasil perhitunganmu untuk membandingkan beberapa pilihan.",
-      imageEmoji: "🏢",
+      audio: audio3,
+
     },
     questions: [
       { image: soal4,
