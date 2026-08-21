@@ -19,10 +19,10 @@ import bg3 from "../assets/bgpage3.png";
 import bgmateri1 from "../assets/bgmateri.png";
 import bgmateri2 from "../assets/bgmateri2.png";
 import bgmateri3 from "../assets/bgmateri3.png";
-import soal1 from "../assets/soal1.png";
-import soal2 from "../assets/gambarsoal4fix.png";
-import soal3 from "../assets/gambarsoal2.png";
-import soal4 from "../assets/gambarsoal2fix.png";
+import soal1 from "../assets/gambar1fix.png";
+import soal2 from "../assets/gambar 2.png";
+import soal3 from "../assets/gambar3.png";
+import soal4 from "../assets/gambarVil3.png";
 import soal5 from "../assets/soalterakhir.png";
 import audio1 from "../assets/audio1.mp3";
 import audio2 from "../assets/audio2.mp3";
@@ -104,14 +104,14 @@ export const LEVEL_DATA = [
         // FV = 5.000.000 x (1.10)^4 = Rp 7.320.500
         question:
           "Nadia menginvestasikan modal sebesar Rp5.000.000 pada suatu produk investasi dengan bunga majemuk 10% per tahun. Investasi dilakukan selama 4 tahun. Gunakan konsep bunga majemuk untuk menentukan nilai akhir investasi Nadia.",
-        options: ["Rp 6.050.000", "Rp 6.500.000", "Rp 7.320.500", "Rp 7.500.000"],
+        options: ["Rp 6.050.000", "Rp 6.500.000", "Rp 7.320.500", "Rp 7.500.000", "Rp 8.050.000 "],
         correct: [2],
       },
       {
         // FV anuitas biasa = 10.000.000 x [((1.08)^5 - 1)/0.08] ≈ Rp 58.666.000
         question:
           "Alya menyisihkan Rp10.000.000 setiap akhir tahun ke dalam rekening investasi dengan bunga 8% per tahun. Ia melakukan setoran selama 5 tahun. Berapakah nilai masa depan investasi Alya?",
-        options: ["Rp50.000.000", "Rp52.000.000", "Rp55.600.000", "Rp58.700.000"],
+        options: ["Rp50.000.000", "Rp52.000.000", "Rp55.600.000", "Rp58.700.000", "Rp60.800.000 "],
         correct: [3],
       },
       {
@@ -119,8 +119,8 @@ export const LEVEL_DATA = [
         // tidak cocok persis ke opsi manapun. Aku pilih Rp983.469 sementara.
         question:
           "Budi membeli sebuah laptop seharga Rp20.000.000 melalui sistem kredit. Pinjaman dikenakan bunga 12% per tahun dan akan dilunasi dalam 24 kali pembayaran bulanan. Berapakah besar pembayaran anuitas Budi setiap bulan?",
-        options: ["Rp800.000", "Rp850.000", "Rp900.000", "Rp983.469"],
-        correct: [3],
+        options: ["Rp800.000", "Rp850.000", "Rp900.000", "Rp983.469", "Rp1.000.000"],
+        correct: [4],
       },
     ],
   },

@@ -68,22 +68,19 @@ export default function ResultPage({
           )}
 
           {passed && !isLast && activeLevel !== 0 && (
-            <button className="gh-btn gh-body btn-primary" onClick={onNextLevel}>
-              Level Berikutnya
+           <button
+              className="action-btn"
+              onClick={onNextLevel}
+            >
+              <img src={next} alt="" />
             </button>
           )}
 
-          {gameFullyCompleted ? (
+          {gameFullyCompleted && (
             <button className="leaderboard-btn" onClick={onLeaderboard}>
             <img src={leaderboard} alt="" />
             <h3>Lihat Leaderboard</h3>
           </button>
-          ) : (
-            !(passed && activeLevel === 0) && (
-              <button className="action-btn" onClick={onBackToMap}>
-                <img src={peta} alt="" />
-              </button>
-            )
           )}
         </div>
         </div>

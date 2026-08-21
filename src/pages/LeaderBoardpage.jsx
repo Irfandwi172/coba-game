@@ -64,8 +64,8 @@ export default function LeaderboardPage({ onBack }) {
             </ol>
           )}
 
-          <button className="btn-genially" onClick={goToGenially}>
-            Ke Genially
+          <button className="btn-genially" onClick={goToGenially} style={{ fontStyle: "bold" , fontSize: "20px"}}>
+            SELESAI
           </button>
         </div>
       </div>

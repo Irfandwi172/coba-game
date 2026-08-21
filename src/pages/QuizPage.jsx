@@ -1,7 +1,7 @@
 import React from "react";
 import BackButton from "../components/BackButton";
 import { MAX_STARS } from "../data/levelData";
-import quizBg1 from "../assets/kuis1.png";
+import quizBg1 from "../assets/kuis1fix.png";
 import quizBg2 from "../assets/kuis2.png";
 import quizBg3 from "../assets/kuis3.png";
 import background from "../assets/bg-question.png";
@@ -62,7 +62,7 @@ export default function QuizPage({
           </span>
         </div>
 
-        <div className="quiz-content-box" style={{ backgroundImage: `url(${background})`, backgroundSize: "cover" }}>
+        <div className="quiz-content-box">
           <h3 className="gh-title quiz-question" style={{ textAlign: "center", marginTop: "10px" }}>
             {q.question}
           </h3>
