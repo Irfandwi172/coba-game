@@ -173,5 +173,5 @@ export const LEVEL_DATA = [
 ];
 
 // Ganti URL ini sesuai kebutuhan link Genially kamu
-export const GENIALLY_URL = "https://view.genially.com/6a73f94f54076ea3a8962983";
-export const GENIALLY_MAP_URL = "https://view.genially.com/6a73f94f54076ea3a8962983";
+export const GENIALLY_URL = "https://view.genially.com/6a881c18fa2dd78b41d19fa5";
+export const GENIALLY_MAP_URL = "https://view.genially.com/6a881c18fa2dd78b41d19fa5";
